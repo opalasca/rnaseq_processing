@@ -1,0 +1,3 @@
+Place fastq files here.
+E.g. download fastq files corresponding to GSE41637 
+bash download_GSE41637.sh

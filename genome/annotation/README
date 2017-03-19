@@ -1,0 +1,3 @@
+Place annotation gtf file here.
+E.g. Ensembl download: 
+rsync -av rsync://ftp.ensembl.org/ensembl/pub/release-87/gtf/mus_musculus .

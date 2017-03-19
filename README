@@ -1,0 +1,28 @@
+#################################################################################################################################
+#           Illusration of the pipeline used for mapping and quantification of RNA-seq data in the publication              #
+#				TISSUES: An integrative web resource on mammalian tissue expression				#
+#			   Oana Palasca, Alberto Santos, Christian Stolte, Jan Gorodkin, Lars Juhl Jensen			#
+#################################################################################################################################
+
+The RNA-seq preprocessing pipeline is exemplified on the mouse dataset with Geo ascension GSE41637. The scripts need to be slightly adapted for other datasets in order to cope with the different naming structure of the samples, and also possibly modified depending on the queing system used on the server. 
+
+1) Download suitable genome fasta and gene set gtf format files and place them into genome/genome and respectively genome/annotation folders
+
+E.g. download from Ensembl http://www.ensembl.org/info/data/ftp/index.html
+
+rsync -av rsync://ftp.ensembl.org/ensembl/pub/release-87/fasta/mus_musculus/dna/ genome/genome
+rsync -av rsync://ftp.ensembl.org/ensembl/pub/release-87/gtf/mus_musculus genome/annotation
+
+2) Run the script generate_indexing_command.sh. This script will create the folder ./genome/genome_indexing and will place in there a bash file which contains the launching command for genome indexing with STAR.
+
+bash ./generate_indexing_command.sh
+
+3) Download fastq files and place them in the fastq folder. 
+
+bash ./fastq/download_GSE41637.sh
+
+4) Generate metadata.tsv file with the following columns: 1.fastq name 2.desired sample/tissue name 3.read (1 or 2 for paired-end reads)  
+
+5) Run the script generate_STAR_commands.sh. This script will create the folder ./STAR and a subfolder ./STAR/$samplename corresponding to each sample. Within each of these subfolder, it places a bash file containing the command to launch STAR mapping for that particular sample.
+
+6) When the mapping is finished, run the script generate_cuffnorm_command.sh. This script will create the folder ./cuffnorm and will place in there a bash file containing the command to launch cuffnorm. 

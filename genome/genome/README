@@ -1,0 +1,3 @@
+Place genome fasta file here.
+E.g. download from Ensembl
+rsync -av rsync://ftp.ensembl.org/ensembl/pub/release-87/fasta/mus_musculus/dna/ .
